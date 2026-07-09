@@ -1,348 +1,248 @@
-// 현재 선택 상태
-
 let selectedFloor = "없음";
 let selectedArea = "";
-
-
-
-// 버튼 가져오기
 
 const floorButtons =
 document.querySelectorAll(".floorButtons button");
 
-
 const areaContainer =
 document.querySelector(".areaButtons");
-
-
 
 const copyButton =
 document.querySelector(".copy");
 
-
 const carInput =
 document.getElementById("carNumber");
-
-
 
 const result =
 document.getElementById("result");
 
+const cameraButton =
+document.getElementById("cameraButton");
+
+const cameraInput =
+document.getElementById("cameraInput");
+
+const previewImage =
+document.getElementById("previewImage");
 
 
-
-// 처음 실행
+// 시작
 updateAreas();
 
 
-
-
-// 층 버튼 이벤트
+// 층 선택
 
 floorButtons.forEach(button => {
 
-
     button.addEventListener("click", function(){
 
-
-        selectedFloor =
-        this.innerText;
-
-
+        selectedFloor = this.innerText;
         selectedArea = "";
 
-
-        floorButtons.forEach(btn =>
-            btn.classList.remove("selected")
-        );
-
+        floorButtons.forEach(btn=>{
+            btn.classList.remove("selected");
+        });
 
         this.classList.add("selected");
 
-
         updateAreas();
 
-
     });
-
 
 });
 
 
 
-
-// 구역 버튼 업데이트
+// 구역 버튼 생성
 
 function updateAreas(){
 
+    areaContainer.innerHTML="";
 
-    areaContainer.innerHTML = "";
-
-
-
-    let areas = [];
+    let areas=[];
 
 
+    if(selectedFloor==="없음"){
 
-    if(selectedFloor === "없음") {
+        areas=[
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "rac",
+            "외곽1",
+            "외곽2"
+        ];
 
-
-       areas =
-[
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "rac",
-    "외곽1",
-    "외곽2"
-];
     }
-
 
 
     else if(
-        selectedFloor === "지하1층" ||
-        selectedFloor === "지하2층"
+        selectedFloor==="지하1층" ||
+        selectedFloor==="지하2층"
     ){
 
-
-        areas =
-       [
-"a",
-"b",
-"c",
-"d",
-"e"
-];
-
+        areas=[
+            "a",
+            "b",
+            "c",
+            "d",
+            "e"
+        ];
 
     }
 
 
+    areas.forEach(area=>{
 
-    else if(selectedFloor === "2층"){
-
-
-        areas = [];
-
-    }
-
-
-
-    areas.forEach(area => {
-
-
-        const button =
+        let button =
         document.createElement("button");
 
-
-        button.innerText = area;
-
+        button.innerText=area;
 
 
-        button.addEventListener("click", function(){
+        button.onclick=function(){
 
-
-            selectedArea = area;
-
+            selectedArea=area;
 
             document
             .querySelectorAll(".areaButtons button")
-            .forEach(btn =>
-                btn.classList.remove("selected")
-            );
+            .forEach(btn=>{
+                btn.classList.remove("selected");
+            });
 
 
             this.classList.add("selected");
 
-
-        });
-
+        };
 
 
         areaContainer.appendChild(button);
 
-
     });
-
-
 
 }
 
 
 
 
-// 차량번호 띄어쓰기 자동 변환
+// 차량번호 띄어쓰기
 
 function formatCarNumber(value){
 
-
-    value =
-    value.replace(/\s/g,"");
+    value=value.replace(/\s/g,"");
 
 
-    const match =
+    let match =
     value.match(/^(\d{2,3}[가-힣])(\d{4})$/);
-
 
 
     if(match){
 
-        return match[1]
-        + " "
-        + match[2];
+        return match[1]+" "+match[2];
 
     }
 
 
     return value;
 
-
 }
 
 
 
-
-// 입력할 때 자동 변환
-
-carInput.addEventListener(
-"input",
-function(){
-
+carInput.addEventListener("input",function(){
 
     this.value =
     formatCarNumber(this.value);
-
 
 });
 
 
 
 
+// 복사
 
-// 복사 버튼
-
-copyButton.addEventListener(
-"click",
-async function(){
+copyButton.addEventListener("click",async()=>{
 
 
-    let car =
-    formatCarNumber(
-        carInput.value
-    );
-
-
-    let text = car;
+    let text =
+    formatCarNumber(carInput.value);
 
 
 
-    if(selectedFloor === "2층"){
+    if(selectedFloor==="2층"){
 
-
-        text +=
-        " 2층";
-
+        text += " 2층";
 
     }
-
 
     else if(
-        selectedFloor === "지하1층" ||
-        selectedFloor === "지하2층"
+        selectedFloor==="지하1층" ||
+        selectedFloor==="지하2층"
     ){
 
-
-        text +=
-        " "
-        + selectedFloor;
-
+        text += " "+selectedFloor;
 
         if(selectedArea){
 
-            text +=
-            " "
-            + selectedArea;
+            text += " "+selectedArea;
 
         }
 
-
     }
 
-
-    else {
-
+    else{
 
         if(selectedArea){
 
-            text +=
-            " "
-            + selectedArea;
+            text += " "+selectedArea;
 
         }
 
-
     }
-
-
-
 
 
     await navigator.clipboard.writeText(text);
 
 
-
     result.innerText =
-    "✅ 복사 완료\n\n"
-    + text;
+    "✅ 복사 완료\n\n"+text;
 
-
-
-});
-
-// =================
-// 카메라 기능
-// =================
-
-const cameraButton = document.getElementById("cameraButton");
-const cameraInput = document.getElementById("cameraInput");
-const previewImage = document.getElementById("previewImage");
-
-
-    cameraButton.addEventListener("click", () => {
-
-    setTimeout(() => {
-
-        cameraInput.click();
-
-    },100);
 
 });
 
 
 
 
-cameraInput.addEventListener("change", (event) => {
+// 카메라
 
-    const file = event.target.files[0];
+cameraButton.addEventListener("click",()=>{
 
-    if (!file) return;
+    cameraInput.click();
 
-
-    const imageURL = URL.createObjectURL(file);
-
-
-    previewImage.src = imageURL;
-
-    previewImage.style.display = "block";
+});
 
 
-    result.innerText =
+cameraInput.addEventListener("change",(event)=>{
+
+
+    const file =
+    event.target.files[0];
+
+
+    if(!file)return;
+
+
+    previewImage.src =
+    URL.createObjectURL(file);
+
+
+    previewImage.style.display="block";
+
+
+    result.innerText=
     "📷 사진 등록 완료";
 
 
 });
-
-
