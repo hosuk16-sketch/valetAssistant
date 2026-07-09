@@ -36,10 +36,28 @@ capture="environment"
 hidden>
 
 
-<button class="camera" id="cameraButton">
+<input
+type="file"
+id="cameraInput"
+accept="image/*"
+capture="environment"
+style="display:none;">
+
+
+<button 
+class="camera"
+id="cameraButton">
 📷 번호판 촬영
 </button>
 
+
+<img
+id="previewImage"
+style="
+width:100%;
+margin-top:20px;
+border-radius:15px;
+display:none;">
 
 <img 
 id="previewImage"
