@@ -311,11 +311,17 @@ const cameraInput = document.getElementById("cameraInput");
 const previewImage = document.getElementById("previewImage");
 
 
-cameraButton.addEventListener("click", () => {
+    cameraButton.addEventListener("click", () => {
 
-    cameraInput.click();
+    setTimeout(() => {
+
+        cameraInput.click();
+
+    },100);
 
 });
+
+
 
 
 cameraInput.addEventListener("change", (event) => {
