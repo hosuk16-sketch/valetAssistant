@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+    padding: 20px;
+
+    font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+    background: #f2f2f7;
+
+}
+
+
+
+.container {
+
+    max-width: 500px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,0.1);
+
+}
+
+
+
+h1 {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+}
+
+
+
+label {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+}
+
+
+
+input {
+
+    width:100%;
+
+    padding:16px;
+
+    margin-top:10px;
+
+    margin-bottom:25px;
+
+    border-radius:12px;
+
+    border:1px solid #ccc;
+
+    font-size:20px;
+
+}
+
+
+
+button {
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:15px;
+
+    font-size:18px;
+
+    background:#007aff;
+
+    color:white;
+
+}
+
+
+
+.camera {
+
+    width:100%;
+
+    margin-bottom:25px;
+
+    background:#34c759;
+
+}
+
+
+
+.copy {
+
+    width:100%;
+
+    margin-top:30px;
+
+    background:#ff9500;
+
+}
+
+
+
+h3 {
+
+    margin-top:20px;
+
+}
+
+
+
+.floorButtons,
+.areaButtons {
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(4,1fr);
+
+    gap:10px;
+
+}
+
+
+
+.floorButtons button,
+.areaButtons button {
+
+    background:#5856d6;
+
+}
+
+
+
+button.selected {
+
+    background:#000;
+
+    color:white;
+
+}
+
+
+
+#result {
+
+    margin-top:20px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
