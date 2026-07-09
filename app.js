@@ -1,3 +1,4 @@
+alert("app.js 실행됨");
 let selectedFloor = "없음";
 let selectedArea = "";
 
