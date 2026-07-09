@@ -132,16 +132,18 @@ function updateAreas(){
 
 function formatCarNumber(value){
 
-    value=value.replace(/\s/g,"");
+    // 공백 제거
+    value = value.replace(/\s/g,"");
 
 
+    // 숫자 2~3자리 + 한글 + 숫자 4자리
     let match =
     value.match(/^(\d{2,3}[가-힣])(\d{4})$/);
 
 
     if(match){
 
-        return match[1]+" "+match[2];
+        return match[1] + " " + match[2];
 
     }
 
@@ -149,7 +151,6 @@ function formatCarNumber(value){
     return value;
 
 }
-
 
 
 carInput.addEventListener("input",function(){
