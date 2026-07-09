@@ -243,8 +243,11 @@ cameraInput.addEventListener("change",(event)=>{
     previewImage.style.display="block";
 
 
-    result.innerText=
-    "📷 사진 등록 완료";
+    result.innerText =
+    "📷 사진 분석 준비";
+
+
+    recognizePlate(file);
 
 
 });
