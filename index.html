@@ -28,10 +28,27 @@ id="carNumber"
 placeholder="123가 4567">
 
 
-<button class="camera">
+<input 
+type="file"
+id="cameraInput"
+accept="image/*"
+capture="environment"
+hidden>
+
+
+<button class="camera" id="cameraButton">
 📷 번호판 촬영
 </button>
 
+
+<img 
+id="previewImage"
+style="
+width:100%;
+margin-top:20px;
+border-radius:15px;
+display:none;
+">
 
 
 <h3>층 선택</h3>
