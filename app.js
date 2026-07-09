@@ -302,3 +302,49 @@ async function(){
 
 
 });
+
+// 카메라 기능
+
+const cameraButton =
+document.getElementById("cameraButton");
+
+const cameraInput =
+document.getElementById("cameraInput");
+
+const previewImage =
+document.getElementById("previewImage");
+
+
+
+cameraButton.addEventListener(
+"click",
+function(){
+
+    cameraInput.click();
+
+});
+
+
+
+cameraInput.addEventListener(
+"change",
+function(event){
+
+    const file =
+    event.target.files[0];
+
+
+    if(!file) return;
+
+
+    const url =
+    URL.createObjectURL(file);
+
+
+    previewImage.src = url;
+
+    previewImage.style.display =
+    "block";
+
+
+});
