@@ -303,103 +303,41 @@ async function(){
 
 });
 
+// =================
 // 카메라 기능
+// =================
 
-const cameraButton =
-document.getElementById("cameraButton");
-
-const cameraInput =
-document.getElementById("cameraInput");
-
-const previewImage =
-document.getElementById("previewImage");
+const cameraButton = document.getElementById("cameraButton");
+const cameraInput = document.getElementById("cameraInput");
+const previewImage = document.getElementById("previewImage");
 
 
-
-cameraButton.addEventListener(
-"click",
-function(){
+cameraButton.addEventListener("click", () => {
 
     cameraInput.click();
 
 });
 
 
+cameraInput.addEventListener("change", (event) => {
 
-cameraInput.addEventListener(
-"change",
-function(event){
+    const file = event.target.files[0];
 
-    const file =
-    event.target.files[0];
+    if (!file) return;
 
 
-    if(!file) return;
+    const imageURL = URL.createObjectURL(file);
 
 
-    const url =
-    URL.createObjectURL(file);
+    previewImage.src = imageURL;
+
+    previewImage.style.display = "block";
 
 
-    previewImage.src = url;
-
-    previewImage.style.display =
-    "block";
+    result.innerText =
+    "📷 사진 등록 완료";
 
 
 });
-// 카메라 기능
-
-const cameraButton =
-document.getElementById("cameraButton");
-
-const cameraInput =
-document.getElementById("cameraInput");
-
-
-const previewImage =
-document.getElementById("previewImage");
-
-
-
-if(cameraButton){
-
-cameraButton.onclick = function(){
-
-    cameraInput.click();
-
-};
-
-}
-
-
-
-if(cameraInput){
-
-cameraInput.onchange = function(event){
-
-
-    const file =
-    event.target.files[0];
-
-
-    if(!file){
-        return;
-    }
-
-
-    const imageURL =
-    URL.createObjectURL(file);
-
-
-    previewImage.src =
-    imageURL;
-
-
-    previewImage.style.display =
-    "block";
-
-
-};
 
 }
