@@ -87,18 +87,17 @@ function updateAreas(){
     if(selectedFloor === "없음") {
 
 
-        areas =
-        [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "RAC",
-            "외곽1",
-            "외곽2"
-        ];
-
+       areas =
+[
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "rac",
+    "외곽1",
+    "외곽2"
+];
     }
 
 
@@ -110,13 +109,13 @@ function updateAreas(){
 
 
         areas =
-        [
-            "A",
-            "B",
-            "C",
-            "D",
-            "E"
-        ];
+       [
+"a",
+"b",
+"c",
+"d",
+"e"
+];
 
 
     }
