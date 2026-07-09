@@ -1,23 +1,23 @@
-// =====================
-// 번호판 OCR 기능
-// =====================
-
-
 async function recognizePlate(imageFile){
 
     result.innerText =
-    "🔍 번호판 인식 중...";
+    "🔍 번호판 분석 중...";
 
 
     const imageURL =
     URL.createObjectURL(imageFile);
 
 
-
     const worker =
-    await Tesseract.createWorker(
-        "kor+eng"
-    );
+    await Tesseract.createWorker("kor+eng");
+
+
+    await worker.setParameters({
+
+        tessedit_char_whitelist:
+        "0123456789가나다라마바사아자차카타파하"
+
+    });
 
 
 
@@ -35,15 +35,18 @@ async function recognizePlate(imageFile){
 
 
 
-    console.log(text);
+    console.log("OCR 결과:", text);
 
 
 
-    // OCR 보정
+    // 불필요 문자 제거
 
     text =
-    text.replace(/\s/g,"");
+    text.replace(/[^0-9가-힣]/g,"");
 
+
+
+    // OCR 오류 보정
 
     text =
     text.replace(/카/g,"가");
@@ -56,7 +59,7 @@ async function recognizePlate(imageFile){
 
     const match =
     text.match(
-        /\d{2,3}[가-힣]\d{4}/
+        /(\d{2,3}[가-힣]\d{4})/
     );
 
 
@@ -65,7 +68,7 @@ async function recognizePlate(imageFile){
 
 
         let number =
-        match[0];
+        match[1];
 
 
         let formatted =
@@ -80,23 +83,24 @@ async function recognizePlate(imageFile){
         );
 
 
+
         carInput.value =
         formatted;
 
 
 
         result.innerText =
-        "✅ 번호판 인식 완료\n\n"
+        "✅ 인식 완료\n\n"
         + formatted;
 
 
-    }
 
+    }
     else {
 
 
         result.innerText =
-        "❌ 번호판을 찾지 못했습니다";
+        "❌ 번호판 인식 실패\n다시 촬영해주세요";
 
 
     }
