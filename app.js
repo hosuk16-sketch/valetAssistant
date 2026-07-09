@@ -348,3 +348,58 @@ function(event){
 
 
 });
+// 카메라 기능
+
+const cameraButton =
+document.getElementById("cameraButton");
+
+const cameraInput =
+document.getElementById("cameraInput");
+
+
+const previewImage =
+document.getElementById("previewImage");
+
+
+
+if(cameraButton){
+
+cameraButton.onclick = function(){
+
+    cameraInput.click();
+
+};
+
+}
+
+
+
+if(cameraInput){
+
+cameraInput.onchange = function(event){
+
+
+    const file =
+    event.target.files[0];
+
+
+    if(!file){
+        return;
+    }
+
+
+    const imageURL =
+    URL.createObjectURL(file);
+
+
+    previewImage.src =
+    imageURL;
+
+
+    previewImage.style.display =
+    "block";
+
+
+};
+
+}
